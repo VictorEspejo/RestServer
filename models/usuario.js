@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const userSchema = Schema({
+const UserSchema = Schema({
   name: {
     type: String,
     required: [true, "El nombre es obligatorio"],
@@ -12,7 +12,7 @@ const userSchema = Schema({
   email: {
     type: String,
     required: [true, "El correo es obligatorio"],
-    unique: true
+    unique: true,
   },
   img: {
     type: String,
@@ -20,7 +20,6 @@ const userSchema = Schema({
   role: {
     type: String,
     required: true,
-    enum: ['ADMIN_ROLE', 'USER_ROLE']
   },
   status: {
     type: Boolean,
@@ -28,8 +27,14 @@ const userSchema = Schema({
   },
   google: {
     type: Boolean,
-    default: false
+    default: false,
   },
 });
 
-module.exports = model('User', userSchema);
+// SOBRESCRIBE LA FUNCION toJSON para devolver solo los datos deseados
+UserSchema.methods.toJSON = function(){
+  const {__v, password, ...usuario }= this.toObject();
+  return usuario;
+}
+
+module.exports = model('User', UserSchema);
