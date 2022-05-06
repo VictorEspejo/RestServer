@@ -33,8 +33,8 @@ const UserSchema = Schema({
 
 // SOBRESCRIBE LA FUNCION toJSON para devolver solo los datos deseados
 UserSchema.methods.toJSON = function(){
-  const {__v, password, ...usuario }= this.toObject();
-  return usuario;
+  const {__v, password, _id: uid, ...usuario }= this.toObject();
+  return {...usuario, uid};
 }
 
 module.exports = model('User', UserSchema);

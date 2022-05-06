@@ -41,11 +41,10 @@ const usuariosPUT = async (req = request, res = response) => {
 };
 
 const usuariosDELETE = async (req = request, res = response) => {
-  const { id } = req.params;
-
-  //Fisicamente lo borramos
+  const { params: { id }, userAuth } = req;
+  //Marcamos como borrado al actualizar el status
   const usuario = await Users.findByIdAndUpdate(id, { status: false });
-  res.json({usuario});
+  res.json({usuario, userAuth});
 };
 
 module.exports = {
