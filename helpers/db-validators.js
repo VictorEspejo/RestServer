@@ -12,10 +12,10 @@ const existsEmail = async (email = "") => {
   if (userEmail) throw new Error("El email ya existe");
 };
 
-const existUserById = async(id = '') => {
-    const existUser = await User.findById(id)
-    if(!existUser) throw new Error("El id no existe");
-}
+const existUserById = async (id = "") => {
+  const existUser = await User.findById(id);
+  if (!existUser || !existUser.status) throw new Error("El usuario no existe");
+};
 
 module.exports = {
   isRoleValido,

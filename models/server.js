@@ -9,7 +9,7 @@ class Server {
     this.paths = {
       users: "/api/usuarios",
       auth: "/api/auth",
-      categories: '/api/categories'
+      categories: "/api/category",
     };
 
     this.conectarDB();
@@ -23,10 +23,10 @@ class Server {
   routes() {
     this.app.use(this.paths.users, require("../routes/user"));
     this.app.use(this.paths.auth, require("../routes/auth"));
-    this.app.use(this.paths.categories, require('../routes/categories'))
+    this.app.use(this.paths.categories, require("../routes/categories"));
   }
 
-  async conectarDB(){
+  async conectarDB() {
     await dbConnection();
   }
 
