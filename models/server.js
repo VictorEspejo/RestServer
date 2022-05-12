@@ -9,6 +9,7 @@ class Server {
     this.paths = {
       users: "/api/usuarios",
       auth: "/api/auth",
+      find: "/api/find",
       categories: "/api/category",
       products: "/api/products",
     };
@@ -26,6 +27,7 @@ class Server {
     this.app.use(this.paths.auth, require("../routes/auth"));
     this.app.use(this.paths.categories, require("../routes/categories"));
     this.app.use(this.paths.products, require("../routes/products"));
+    this.app.use(this.paths.find, require("../routes/find"));
   }
 
   async conectarDB() {

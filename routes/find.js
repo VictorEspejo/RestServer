@@ -1,5 +1,8 @@
-const { router } = require("express");
+const { Router } = require("express");
+const { find } = require("../controllers/find");
 
-const router = router();
+const router = Router();
+
+router.get("/:coleccion/:termino", find);
 
 module.exports = router;
